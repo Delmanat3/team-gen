@@ -29,7 +29,7 @@ const Employee= require('./employee')
 const employee = new Employee('big mike', 69, 'bigmike@hotmail.com');//nice
 
 test( "Create an employee", () => {
-    const employee = new Employee( "big mike", 69, 'bigmike@hotmail.com');
+    const employee = new Employee ( "big mike", 69, 'bigmike@hotmail.com');
  
     expect(( employee )).toBeInstanceOf( Employee );
     expect( employee.name ).toEqual( 'big mike' );
@@ -37,32 +37,32 @@ test( "Create an employee", () => {
     expect( employee.email ).toEqual( 'bigmike@hotmail.com' );
  });
  test( "see if theName() works", () => {
-    const tName = "big mike";
-    const employee = new Employee( tName );
+    const Name = "big mike";
+    const employee = new Employee(Name);
  
-    expect( employee.theName()).toBe(tName );
+    expect( employee.theName()).toBe(Name );
  });
 
  test( "see if theId() works", () => {
-    const IdT = 69;
-    const employee = new Employee( "big mike", IdT );
+    const Id = 69;
+    const employee = new Employee( "big mike", Id);
  
-    expect( employee.theId()).toBe( IdT );
+    expect( employee.theId()).toBe(Id);
  });
  
 
  test( "see if theEmail() works", () => {
-    const tEmail = "bigmike@hotmail.com";
-    const employee = new Employee( "big mike", 69, tEmail );
+    const Email = "bigmike@hotmail.com";
+    const employee = new Employee( "big mike", 69, Email );
  
-    expect( employee.theEmail()).toBe( tEmail );
+    expect(employee.theEmail()).toBe(Email);
  });
 
  test( "see if theRole() returns \"Employee\" ", () => {
-    const tRole = "Employee";
+    const Role = "Employee";
     const employee = new Employee( "big mike", 69, "bigmike@hotmail.com" );
  
     
-    expect( employee.theRole()).toBe( tRole );
+    expect( employee.theRole()).toBe( Role );
  });
  

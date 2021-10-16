@@ -10,10 +10,10 @@ test( "what is engineer's username", () => {
 });
 
 test( "set hub account using gitGit()", () => {
-   const testGithubUsername = "bigmike69";
+   const tUsername = "bigmike69";
    const engineer = new Engineer( "big mike", 69, "bigmike@hotmail.com", tUsername );
 
-   expect( engineer.getGithubUsername()).toBe( testGithubUsername );
+   expect( engineer.gitGit()).toBe( tUsername );
 });
 
 test( "see if theRole() returns \"Engineer\" ", () => {

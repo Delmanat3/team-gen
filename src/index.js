@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs=require('fs')
-
+//ебать
 
 const Manager = require( "../justjs/manager" );
 const man=require('../justjs/man')
@@ -41,7 +41,7 @@ questions = {
     <div class = "card-container row align-items-start ">
     `;
        holdyboy.push(headTitle);
-       
+
        for ( let i = 1; i < teamHoldy.length; i++ ) {
           let headacheHtml = `
           <div class="card col text-white bg-dark mb-3" style="width: 18rem;">

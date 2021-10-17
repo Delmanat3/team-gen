@@ -1,6 +1,6 @@
 //const { number } = require('yargs');
-const { describe } = require('yargs');
-const Employee= require('./employee')
+//const { describe } = require('yargs');
+const Employee= require('../justjs/employee')
 
 //https://jestjs.io/docs/expect
 
@@ -44,7 +44,7 @@ const employee = new Employee ( "big mike", 69, 'bigmike@hotmail.com');
     const Name = "big mike";
     const employee = new Employee(Name);
  
-    expect( employee.theName()).toBe(Name );
+    expect( employee.theName()).toEqual(Name );
  })
  }    
  )
@@ -53,7 +53,7 @@ const employee = new Employee ( "big mike", 69, 'bigmike@hotmail.com');
     const Id = 69;
     const employee = new Employee( "big mike", Id);
  
-    expect( employee.theId()).toBe(Id);
+    expect( employee.theId()).toEqual(Id);
  })
  })
 describe('see if theEmail works',()=>{
@@ -61,7 +61,7 @@ describe('see if theEmail works',()=>{
     const Email = "bigmike@hotmail.com";
     const employee = new Employee( "big mike", 69, Email );
  
-    expect(employee.theEmail()).toBe(Email);
+    expect(employee.theEmail()).toEqual(Email);
  })
 })
 describe('see if theRole works',()=>{
@@ -70,7 +70,7 @@ describe('see if theRole works',()=>{
     const employee = new Employee( "big mike", 69, "bigmike@hotmail.com" );
  
     
-    expect( employee.theRole()).toBe( Role );
+    expect( employee.theRole()).toEqual( Role );
  })
  
 })

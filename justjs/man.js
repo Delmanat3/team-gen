@@ -1,4 +1,4 @@
-module.exports = [{
+man = [{
     type: "input",
     name: "managerName",
     message: "Input your manager's name:",
@@ -32,8 +32,6 @@ module.exports = [{
     message: "Input your manager's email address:",
     validate: managerEmailInput => {
        if ( managerEmailInput && managerEmailInput.length > 0 ) {
-          
-        
              return true;
           
        }
@@ -57,3 +55,4 @@ module.exports = [{
        };
     }
  }];
+ module.exports=man

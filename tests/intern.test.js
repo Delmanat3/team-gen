@@ -1,5 +1,5 @@
-const { describe } = require("@jest/globals");
-const Intern = require("./intern");
+//const { describe } = require("@jest/globals");
+const Intern = require("../justjs/intern");
 const intern = new Intern('bigmike', 40, 'bigmike@hotmail.com', 'UCSD');
 
 
@@ -8,7 +8,7 @@ it( "se if theRole() returns \"Intern\" ", () => {
     const Role = "Intern";
     const intern = new Intern( 'big mike', 69, 'bigmike@hotmail.com', 'UCSD' );
  
-    expect( intern.theRole()).toBe( Role );
+    expect( intern.theRole()).toEqual( Role );
  })
 })
 describe('tests theSchool',()=>{
@@ -16,7 +16,7 @@ describe('tests theSchool',()=>{
     const School = "UCSD";
     const intern = new Intern( 'big mike', 69, 'bigmike@hotmail.com', School );
  
-    expect( intern.theSchool()).toBe( School );
+    expect( intern.theSchool()).toEqual( School );
  })
  })
  describe('set school',()=>{
@@ -24,6 +24,6 @@ describe('tests theSchool',()=>{
     const School = "UCSD";
     const intern = new Intern( 'big mike', 69, 'bigmike@hotmail.com', School );
  
-    expect( intern.school ).toBe( School );
+    expect( intern.school ).toEqual( School );
  })
  })

@@ -1,22 +1,18 @@
-const Employee = require("./Employee");
+const Employee = require("../justjs/employee");
 
 class Engineer extends Employee {
-    constructor(name, ID, email, github) {
+    constructor(name, ID, email, gitUsername) {
         super(name, ID, email);
-        this.github = github;
-        this.title = "Engineer";
+        this.gitUsername = gitUsername;
+        this.role = "Engineer";
     }
     gitGit() {
-        return this.github;
+        return this.gitUsername;
     }
     theRole() {
-        return this.title;
+        return this.role;
     }
 }
-//Що робити далі
-//Убий себе lmao
-//ебать вас
-//Мама добре?
-//Ви багато говорите по-англійськи, Ні ? Ось ідіот
+
 
 module.exports = Engineer;

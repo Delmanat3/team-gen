@@ -1,10 +1,10 @@
-const Employee = require( "./Employee" );
+const Employee = require( "../justjs/employee" );
 
 class Intern extends Employee {
    constructor( name, id, email, school ) {
       super( name, id, email );
       this.school = school;
-      this.role = 'Interntally bleeding';
+      this.role = 'Intern';
    };
 
    theSchool() {

@@ -1,4 +1,4 @@
-module.exports = [{
+eng = [{
     type: "input",
     name: "engineerName",
     message: "Input your engineer's name:",
@@ -42,10 +42,10 @@ module.exports = [{
  },
  {
     type: "input",
-    name: "engineerGithubUsername",
+    name: "engineergitUsername",
     message: "Input your engineer's Github username:",
-    validate: engineerGithubUsername => {
-       if ( engineerGithubUsername && engineerGithubUsername.length > 0 ) {
+    validate: engineergitUsername => {
+       if ( engineergitUsername && engineergitUsername.length > 0 ) {
           return true;
        }
        else {
@@ -54,3 +54,4 @@ module.exports = [{
        };
     }
  }];
+ module.exports=eng

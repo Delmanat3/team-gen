@@ -1,311 +1,210 @@
 const inquirer = require("inquirer");
+const fs=require('fs')
 
 
-const Manager = require( "./justjs/Manager" );
-const Engineer = require( "./justjs/Engineer" );
-const Intern = require( "./justjs/Intern" );
+const Manager = require( "../justjs/manager" );
+const man=require('../justjs/man')
+
+const Engineer = require( "../justjs/engineer" );
+const eng=require('../justjs/eng')
+const Intern = require( "../justjs/intern" );
+const int=require('../justjs/int')
+const start=require('../justjs/start')
+
+let teamHoldy = [];
 
 
-let teamProfileArr = [];
 
- const questions = ([
-    {
-        type: "input",
-        name: "managerName",
-        message: "Input your manager's name:",
-        validate: managerNameInput => {
-           if ( managerNameInput && managerNameInput.length > 0 ) {
-              return true;
-           }
-           else {
-              console.log( "Input your manager's name:" );
-              return false;
-           };
-        }
-     },
-     {
-        type: "input",
-        name: "managerId",
-        message: "Input your manager's employee ID:",
-        validate: managerIdInput => {
-           if ( managerIdInput && managerIdInput.length > 0 ) {
-              return true;
-           }
-           else {
-              console.log( "Input your manager's employee ID:" );
-              return false;
-           };
-        }
-     },
-     {
-        type: "input",
-        name: "managerEmail",
-        message: "Input your manager's email address:",
-        validate: managerEmailInput => {
-           if ( managerEmailInput && managerEmailInput.length > 0 ) {
-              // Check for valid email address format
-              
-                 return true;
-              
-           }
-           else {
-              console.log( "Input your manager's email address:" );
-              return false;
-           };
-        }
-     },
-     {
-        type: "input",
-        name: "managerOfficeNum",
-        message: "Input your manager's office number:",
-        validate: managerOfficeNumInput => {
-           if ( managerOfficeNumInput && managerOfficeNumInput.length > 0 ) {
-              return true;
-           }
-           else {
-              console.log( "Input your manager's office number:" );
-              return false;
-           };
-        }
-     },
-    {
-       type: "list",
-       name: "menuChoices",
-       message: "Please choose an option below:",
-       choices: [ "Add an Engineer Profile", "Add an Intern Profile", "Done Generating Profiles" ],
-       validate: menuChoicesInput => {
-          if ( menuChoicesInput === "Add an Engineer Profile" || menuChoicesInput === "Add an Intern Profile" ) {
-             return true;
-          }
-          else if( menuChoicesInput === "Done Generating Profiles" ) {
-             return true;
-          }
-          else {
-             console.log( "Please choose an option below:" );
-             return false;
-          };
-       }
-    },{
-        type: "input",
-        name: "engineerName",
-        message: "Input your engineer's name:",
-   validate: engineerNameInput => {
-      if ( engineerNameInput && engineerNameInput.length > 0 ) {
-         return true;
-      }
-      else {
-         console.log( "Input your engineer's name:" );
-         return false;
-      };
-   }
-},
-{
-   type: "input",
-   name: "engineerId",
-   message: "Input your engineer's employee ID:",
-   validate: engineerIdInput => {
-      if ( engineerIdInput && engineerIdInput.length > 0 ) {
-         return true;
-      }
-      else {
-         console.log( "Input your engineer's employee ID:" );
-         return false;
-      };
-   }
-},
-{
-   type: "input",
-   name: "engineerEmail",
-   message: "Input your engineer's email address:",
-   validate: engineerEmailInput => {
-      if ( engineerEmailInput && engineerEmailInput.length > 0 ) {
-           return true;
+
+
+
+questions = {
+    headacheGen(teamHoldy) {
+       const holdyboy = [];
+       const headTitle = `
+ <!DOCTYPE html>
+ <html lang = "en">
+ <head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial scale = 1.0">
+    <meta http-equiv = "X-UA-Compatible" content = "ie = edge">
+    <title>TEAMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+ </head>
+ <body>
+    <div class = "title-bar text-center">
+       <h1>${teamHoldy[0]}'s Employees</h1>
+    </div>
+    <div class = "card-container row align-items-start ">
+    `;
+       holdyboy.push(headTitle);
+       
+       for ( let i = 1; i < teamHoldy.length; i++ ) {
+          let headacheHtml = `
+          <div class="card col text-white bg-dark mb-3" style="width: 18rem;">
+            <div class="card-body ">
+            <h5 class="card-title">${teamHoldy[i].role}</h5>
+                  `;
+ 
+                
+                if (teamHoldy[i].role === "Manager") {
+                   headacheHtml += `<p class="card-text bi bi-telephone"> ${teamHoldy[i].name}   
+                   </p>`;
+
+                } else if (teamHoldy[i].role === "Intern") {
+                   headacheHtml += `<p  class="card-text bi bi-piggy-bank"> ${teamHoldy[i].name} 
+                    </p>`;
+                }
+                else if (teamHoldy[i].role === "Engineer") {
+                   headacheHtml += `<p class="card-text bi bi-sd-card"> ${teamHoldy[i].name}  
+                    </p>`;
+                }
+               
+ 
+                headacheHtml += `
+             </div>
+             <ul class="list-group list-group-flush">
+             <li class="list-group-item"><p><b>Employee ID:</b> ${teamHoldy[i].id}</p></li>
+             <li class="list-group-item"><p><b>Email:</b><br><a href = "mailto:${teamHoldy[i].email}">${teamHoldy[i].email}</a></p></li>
+            
+          `;
+ 
          
-      }
-      else {
-         console.log( "Input your engineer's email address:" );
-         return false;
-      };
-   }
-},
-{
-   type: "input",
-   name: "engineerGithubUsername",
-   message: "Input your engineer's Github username:",
-   validate: engineerGithubUsername => {
-      if ( engineerGithubUsername && engineerGithubUsername.length > 0 ) {
-         return true;
-      }
-      else {
-         console.log( "Input your engineer's Github username:" );
-         return false;
-      };
-   }
-    },{
-        type: "input",
-        name: "internName",
-        message: "Input your intern's name:",
-        validate: internNameInput => {
-           if ( internNameInput && internNameInput.length > 0 ) {
-              return true;
-           }
-           else {
-              console.log( "Input your intern's name:" );
-              return false;
-           };
-        }
-     },
-     {
-        type: "input",
-        name: "internId",
-        message: "Input your intern's employee ID:",
-        validate: internIdInput => {
-           if ( internIdInput && internIdInput.length > 0 ) {
-              return true;
-           }
-           else {
-              console.log( "Input your intern's employee ID:" );
-              return false;
-           };
-        }
-     },
-     {
-        type: "input",
-        name: "internEmail",
-        message: "Input your intern's email address:",
-        validate: internEmailInput => {
-           if ( internEmailInput && internEmailInput.length > 0 ) {
-         
-                 return true;
-              
-           }
-           else {
-              console.log( "Input your intern's email address:" );
-              return false;
-           };
-        }
-     },
-     {
-        type: "input",
-        name: "internSchool",
-        message: "Input your intern's school name:",
-        validate: internSchoolInput => {
-           if ( internSchoolInput && internSchoolInput.length > 0 ) {
-              return true;
-           }
-           else {
-              console.log( "Input your intern's school name:" );
-              return false;
-           };
-        }
-     }
+          if (teamHoldy[i].officeNumber ) {
+             headacheHtml += `<li class="list-group-item"><p><b>Office Number:</b><br>${teamHoldy[i].officeNumber}</p></li>`;
+          }
+          else if (teamHoldy[i].school) {
+             headacheHtml += `<li class="list-group-item"><p><b>School:</b><br>${teamHoldy[i].school}</p></li>`;
+          }
+          
+          else if (teamHoldy[i].gitUsername) {
+             headacheHtml += `<li class="list-group-item"><p><b>GitHub:</b><br><a href = "https://github.com/${teamHoldy[i].gitUsername}">${teamHoldy[i].gitUsername}</a></p></li>`;
+          }
+          
+          
+ 
+          headacheHtml += `
+            </ul>
+             </div>
+          
+          `;
+          holdyboy.push(headacheHtml);
+       };
+ 
+       const htmlFooter = `
+    </div>   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+ </body>
+ </html>
+ `;
+       holdyboy.push (htmlFooter);
+       return holdyboy;
+    }
+ };
 
 
-]
- );
- function generateHtmlFile() {
-    const holdHtmlArr = holdHtml.generateHtml( teamProfileArr );
-    writeToFile( holdHtmlArr );
+const writeToFile = (holdyboy) => {
+ fs.writeFile( "index.html", `${holdyboy}`,(err)=>{
+    err ? console.log(err) : console.log('itwork')
+ })}
+
+ function gennyHFile() {
+    const holdyboy = questions.headacheGen(teamHoldy);
+    writeToFile(holdyboy);
  };
  
- // Add the intern profile to the teamProfileArr array.
- function addInternProfile() {
-    inquirer.prompt( internQuestions )
-    .then ( function( data ) {
+
+ function addInt() {
+    inquirer.prompt(int)
+    .then (function(data) {
        const internName = data.internName;
        const internId = data.internId;
        const internEmail = data.internEmail;
        const internSchool = data.internSchool;
        const teamMember = new Intern( internName, internId, internEmail, internSchool );
  
-       teamProfileArr.push( teamMember );
-
+       teamHoldy.push(teamMember);
+ 
+      
        addTeam();
     });
  };
-
- // Add the engineer profile to the teamProfileArr array.
- function addEngineerProfile() {
-    inquirer.prompt( engineerQuestions )
+ 
+ function addEng() {
+    inquirer.prompt( eng )
     .then ( function( data ) {
        const engineerName = data.engineerName;
        const engineerId = data.engineerId;
        const engineerEmail = data.engineerEmail;
-       const engineerGithubUsername = data.engineerGithubUsername;
-       const teamMember = new Engineer( engineerName, engineerId, engineerEmail, engineerGithubUsername );
+       const engineergitUsername = data.engineergitUsername;
+       const teamMember = new Engineer( engineerName, engineerId, engineerEmail, engineergitUsername );
        
-       teamProfileArr.push( teamMember );
+       teamHoldy.push(teamMember);
  
        
        addTeam();
     });
  };
-
+ 
  function addTeam() {
-    inquirer.prompt( addEmployeeQuestion )
+    inquirer.prompt( start )
     .then( function( data ) {
-       switch ( data.menuChoices ) {
-          case "Add an Engineer Profile":
-             addEngineerProfile();
+       switch ( data.choosie ) {
+          case "Add Engineer":
+             addEng();
              break;
-          case "Add an Intern Profile":
-             addInternProfile();
+          case "Add Intern":
+             addInt();
              break;
-          case "Done Generating Profiles":
-             generateHtmlFile();
+          case "Done!":
+             gennyHFile();
           break;
        };
     });
  };
-
- // Add the engineer profile to the teamProfileArr array
- function addManagerProfile() {
-    inquirer.prompt( Questions )
-    .then( function( data ) {
+ 
+ function addMan() {
+    inquirer.prompt(man)
+    .then( function(data) {
        const managerName = data.managerName;
        const managerId = data.managerId;
        const managerEmail = data.managerEmail;
        const managerOfficeNum = data.managerOfficeNum;
-       const teamMember = new Manager( managerName, managerId, managerEmail, managerOfficeNum );
+       const teamMember = new Manager(managerName, managerId, managerEmail, managerOfficeNum);
        
-       teamProfileArr.push( teamMember );
- 
-       
+       teamHoldy.push(teamMember);
        addTeam();
     });
  };
- // Start the application by displaying a welcome message.
- // Then populate prompts to get the user input for the manager profile.
+ 
  function init() {
     inquirer.prompt([
        {
-          message: "Welcome to the Team Profile Generator.  Input your team name:",
+          message: "Input Name for the things plz:",
           name: "teamName",
           validate: teamNameInput => {
-             if ( teamNameInput && teamNameInput.length > 0 ) {
+             if ( teamNameInput && teamNameInput.trim().length > 0 ) {
                 return true;
              }
              else {
-                console.log( "Input your team name:" );
+                console.log( "Input name:" );
                 return false;
              };
           }
        }
     ])
-    .then( function( data ) {
-       const teamName = data.teamName;
-       teamProfileArr.push( teamName );
-       addManagerProfile();
+    .then(function(data) {
+       const teamName = data.teamName.toUpperCase()
+       teamHoldy.push(teamName);
+       addMan();
     });
  };
- 
- 
- // Function call to initialize application.
+
  init();
-    
-    const Questions=inquirer.prompt(questions)
-    
-    module.exports(Questions)
 
 // const questions = ([{
 //     type: "input",

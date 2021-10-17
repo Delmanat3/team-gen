@@ -1,4 +1,5 @@
 //const { number } = require('yargs');
+const { describe } = require('yargs');
 const Employee= require('./employee')
 
 //https://jestjs.io/docs/expect
@@ -27,42 +28,49 @@ const Employee= require('./employee')
 
 
 const employee = new Employee('big mike', 69, 'bigmike@hotmail.com');//nice
-
-test( "Create an employee", () => {
-    const employee = new Employee ( "big mike", 69, 'bigmike@hotmail.com');
- 
-    expect(( employee )).toBeInstanceOf( Employee );
-    expect( employee.name ).toEqual( 'big mike' );
-    expect( employee.id ).toEqual( 69 );
+describe('init() should create employee ',()=>{
+it( "Create an employee thingymajiger", () => {
+const employee = new Employee ( "big mike", 69, 'bigmike@hotmail.com');
+ expect(employee).toBeInstanceOf( Employee );
+  expect( employee.name ).toEqual( 'big mike' );
+   expect( employee.id ).toEqual( 69 );
     expect( employee.email ).toEqual( 'bigmike@hotmail.com' );
- });
- test( "see if theName() works", () => {
+ }
+ )
+}
+ )
+ describe('see if theName() works', ()=>{
+ it( "sets name", () => {
     const Name = "big mike";
     const employee = new Employee(Name);
  
     expect( employee.theName()).toBe(Name );
- });
-
- test( "see if theId() works", () => {
+ })
+ }    
+ )
+ describe('see if theId() works',()=>{
+ it( "fuck", () => {
     const Id = 69;
     const employee = new Employee( "big mike", Id);
  
     expect( employee.theId()).toBe(Id);
- });
- 
-
- test( "see if theEmail() works", () => {
+ })
+ })
+describe('see if theEmail works',()=>{
+ it( "my brain", () => {
     const Email = "bigmike@hotmail.com";
     const employee = new Employee( "big mike", 69, Email );
  
     expect(employee.theEmail()).toBe(Email);
- });
-
- test( "see if theRole() returns \"Employee\" ", () => {
+ })
+})
+describe('see if theRole works',()=>{
+ it( " returns \"Employee\" ", () => {
     const Role = "Employee";
     const employee = new Employee( "big mike", 69, "bigmike@hotmail.com" );
  
     
     expect( employee.theRole()).toBe( Role );
- });
+ })
  
+})

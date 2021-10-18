@@ -12,7 +12,7 @@ const int=require('../justjs/int')
 const start=require('../justjs/start')
 
 let teamHoldy = [];
-;
+
 
 
 
